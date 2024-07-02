@@ -1,26 +1,25 @@
 process.stdin.setEncoding("utf-8");
 
-function askName(){
-    process.stdout.write("Qual seu nome? ");
+function askName() {
+    process.stdout.write("Qual seu nome? \n");
 }
 
-function askAge(){
-    process.stdout.write("Qual sua idade? ");
+function askAge() {
+    process.stdout.write("Qual sua idade? \n");
 }
 
 let userName = "";
 let userAge = "";
+let step = 0;
 
-let condition = "Name";
-
-process.stdin.on("data", (data) =>{
+process.stdin.on("data", (data) => {
     const input = data.trim();
-
-    if(condition === "Name"){
+    
+    if (step === 0) {
         userName = input;
-        condition = "Age";
+        step++;
         askAge();
-    } else if(condition === "Age"){
+    } else if (step === 1) {
         userAge = input;
         process.stdout.write(`Olá, seu nome é: ${userName}! Você tem ${userAge} anos.\n`);
         process.exit();
